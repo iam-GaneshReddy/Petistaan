@@ -17,7 +17,6 @@ public class Demo{
     }
 
     public void run(String... args) {
-        Scanner sc=new Scanner(System.in);
         ownerService = new ServiceImpl(new RepositoryImpl());
         try (Scanner scanner = new Scanner(System.in)) {
             do {
