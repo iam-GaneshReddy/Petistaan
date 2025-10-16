@@ -1,5 +1,5 @@
 package enums;
 
 public enum PetType {
-    Bird,Rabbit,Dog,Cat;
+    BIRD, CAT, DOG, FISH, RABBIT
 }
