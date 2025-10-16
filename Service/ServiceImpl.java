@@ -36,7 +36,7 @@ public class ServiceImpl implements Service{
         if(optional.isEmpty())
             throw new OwnerNotFoundException("owner not found with this"+id);
         else
-            repository.delete(optional.get());
+            repository.delete(optional.get().getId());
     }
     @Override
     public List<OwnerDTO> getAllOwners() {
