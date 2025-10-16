@@ -10,7 +10,6 @@ public class InputUtil {
     private InputUtil() {
 
     }
-
     public static int acceptMenuOption(Scanner scanner) {
         System.out.println("Press 1 to add new owner.");
         System.out.println("Press 2 to fetch owner details.");
@@ -26,13 +25,11 @@ public class InputUtil {
             return acceptMenuOption(scanner);
         }
     }
-
     public static boolean wantToContinue(Scanner scanner) {
         System.out.println("Press Y to continue and N to exit.");
         char choice = scanner.next().toUpperCase().charAt(0);
         return 'Y' == choice;
     }
-
     public static OwnerDTO acceptOwnerDetailsToSave(Scanner scanner) {
         System.out.println("Enter id of owner:");
         int id = scanner.nextInt();
@@ -81,17 +78,14 @@ public class InputUtil {
             return acceptOwnerDetailsToSave(scanner);
         }
     }
-
     public static String acceptPetDetailsToUpdate(Scanner scanner) {
         System.out.println("Enter updated name of pet:");
         return scanner.next();
     }
-
     public static int acceptOwnerIdToOperate(Scanner scanner) {
         System.out.println("Enter id of owner:");
         return scanner.nextInt();
     }
-
     public static LocalDate convertStringToDate(String stringDate) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(stringDate, format);
