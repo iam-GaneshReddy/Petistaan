@@ -15,12 +15,11 @@ public class Demo{
         Demo demo = new Demo();
         demo.run(args);
     }
-
     public void run(String... args) {
         ownerService = new ServiceImpl(new RepositoryImpl());
+        System.out.println("Welcome to Petistaan");
         try (Scanner scanner = new Scanner(System.in)) {
             do {
-                System.out.println("Welcome to Petistaan");
                 int menuOption = InputUtil.acceptMenuOption(scanner);
                 switch (menuOption) {
                     case 1:
