@@ -33,7 +33,7 @@ public class RepositoryImpl implements Repository {
             Class.forName(DATABASE_DRIVER);
             connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
             statement = connection.createStatement();
-            statement.executeUpdate(sql);
+           statement.executeUpdate(sql);
             // System.out.println("successfully connected");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -124,8 +124,8 @@ public class RepositoryImpl implements Repository {
             Class.forName(DATABASE_DRIVER);
             connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
             statement = connection.createStatement();
-            statement.executeUpdate(sql);
-            // System.out.println("successfully connected");
+            int n =  statement.executeUpdate(sql);
+            System.out.println("update how many rows got affected"+n);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
