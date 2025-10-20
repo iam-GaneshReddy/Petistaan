@@ -11,4 +11,5 @@ public interface Service {
     void delete(int id)throws OwnerNotFoundException;
     List<OwnerDTO> getAllOwners();
     void updatePetDetails(int ownerId, String petName)throws OwnerNotFoundException;
+    List<OwnerDTO> updatePetDetails(String petType);
 }

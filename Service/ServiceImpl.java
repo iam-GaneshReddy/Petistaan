@@ -1,15 +1,21 @@
 package Service;
 
+import Config.PropertiesConfig;
 import Model.OwnerDTO;
 import Repository.RepositoryImpl;
 import Exception.*;
+import Repository.RepositoryImpl2;
+
 import java.util.List;
 import java.util.Optional;
 
 public class ServiceImpl implements Service{
-    private  RepositoryImpl repository;
+    private static  RepositoryImpl2 repository;
+    private static final String OWNER_ALREADY_EXISTS = "owner.already.exists";
+    private static final String OWNER_NOT_FOUND = "owner.not.found";
+    private static final PropertiesConfig PROPERTIES_CONFIG = PropertiesConfig.getInstance();
 
-    public ServiceImpl(RepositoryImpl repository) {
+    public ServiceImpl(RepositoryImpl2 repository) {
         this.repository = repository;
     }
 
@@ -17,7 +23,7 @@ public class ServiceImpl implements Service{
     public void add(OwnerDTO owner) throws OwnerAlreadyExistException {
        Optional<OwnerDTO> optionalOwner = repository.getById(owner.getId());
        if(optionalOwner.isPresent())
-           throw new OwnerAlreadyExistException("owner already exists enter new details");
+           throw new OwnerAlreadyExistException(PROPERTIES_CONFIG.getProperty(OWNER_ALREADY_EXISTS));
        else
            repository.add(owner);
     }
@@ -26,7 +32,7 @@ public class ServiceImpl implements Service{
     public OwnerDTO getById(int id) throws OwnerNotFoundException {
         Optional<OwnerDTO> optional = repository.getById(id);
         if(optional.isEmpty())
-            throw new OwnerNotFoundException("owner not found with this"+id);
+            throw new OwnerNotFoundException(PROPERTIES_CONFIG.getProperty(OWNER_NOT_FOUND));
         return optional.get();
     }
 
@@ -34,7 +40,7 @@ public class ServiceImpl implements Service{
     public void delete(int id) throws OwnerNotFoundException {
         Optional<OwnerDTO> optional=repository.getById(id);
         if(optional.isEmpty())
-            throw new OwnerNotFoundException("owner not found with this"+id);
+            throw new OwnerNotFoundException(PROPERTIES_CONFIG.getProperty(OWNER_NOT_FOUND));
         else
             repository.delete(optional.get().getId());
     }
@@ -46,9 +52,14 @@ public class ServiceImpl implements Service{
     public void updatePetDetails(int ownerId, String petName) throws OwnerNotFoundException {
         Optional<OwnerDTO> optional=repository.getById(ownerId);
         if(optional.isEmpty())
-            throw new OwnerNotFoundException("owner not found with this"+ownerId);
+            throw new OwnerNotFoundException(PROPERTIES_CONFIG.getProperty(OWNER_NOT_FOUND));
         else
             repository.updatePetDetails(ownerId, petName);
 
+    }
+
+    @Override
+    public List<OwnerDTO> updatePetDetails(String petType) {
+        return repository.updatePetDetails(petType);
     }
 }
