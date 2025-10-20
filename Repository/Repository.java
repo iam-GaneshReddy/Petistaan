@@ -11,4 +11,5 @@ public interface Repository {
     void delete(int  ownerId);
     List<OwnerDTO> getAllOwners();
     void updatePetDetails(int ownerId, String petName);
+    List<OwnerDTO> updatePetDetails(String petType);
 }

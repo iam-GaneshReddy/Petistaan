@@ -116,6 +116,11 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    public List<OwnerDTO> updatePetDetails(String petType) {
+        return List.of();
+    }
+
+    @Override
     public void delete(int ownerId) {
         String sql = "delete from owner_table where id=" + ownerId;
         Connection connection = null;
