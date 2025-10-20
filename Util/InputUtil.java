@@ -16,9 +16,11 @@ public class InputUtil {
         System.out.println("Press 3 to update pet details of owner.");
         System.out.println("Press 4 to delete owner details.");
         System.out.println("Press 5 to fetch all owners.");
-        System.out.println("Press 6 to exit");
+        System.out.println("Press 6 to update pet type");
+        System.out.println("Press 7 to exit");
         int menuOption = scanner.nextInt();
-        if (menuOption == 1 || menuOption == 2 || menuOption == 3 || menuOption == 4 || menuOption == 5||menuOption==6) {
+        if (menuOption == 1 || menuOption == 2 || menuOption == 3 ||
+                menuOption == 4 || menuOption == 5||menuOption==6 || menuOption==7) {
             return menuOption;
         } else {
             System.out.println("Invalid Option-Enter the above options only");
@@ -85,6 +87,10 @@ public class InputUtil {
     public static int acceptOwnerIdToOperate(Scanner scanner) {
         System.out.println("Enter id of owner:");
         return scanner.nextInt();
+    }
+    public static String acceptPetTypeToOperate(Scanner scanner){
+        System.out.println("Enter the Pet type");
+        return scanner.next().toUpperCase();
     }
     public static LocalDate convertStringToDate(String stringDate) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
