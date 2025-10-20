@@ -1,5 +1,5 @@
 import Model.OwnerDTO;
-import Repository.RepositoryImpl;
+import Repository.RepositoryImpl2;
 import Service.Service;
 import Service.ServiceImpl;
 import Util.InputUtil;
@@ -13,10 +13,10 @@ public class Demo{
 
     public static void main(String[] args) throws IOException {
         Demo demo = new Demo();
-        demo.run(args);
+        demo.run();
     }
-    public void run(String... args) {
-        ownerService = new ServiceImpl(new RepositoryImpl());
+    public void run() {
+        ownerService = new ServiceImpl(new RepositoryImpl2());
         System.out.println("Welcome to Petistaan");
         try (Scanner scanner = new Scanner(System.in)) {
             do {
@@ -34,7 +34,7 @@ public class Demo{
                         System.out.println(ownerDTO);
                         break;
                     case 3:
-                        ownerId = InputUtil.acceptOwnerIdToOperate(scanner);
+                       ownerId = InputUtil.acceptOwnerIdToOperate(scanner);
                         String petName = InputUtil.acceptPetDetailsToUpdate(scanner);
                         ownerService.updatePetDetails(ownerId, petName);
                         System.out.println("Pet details of owner have been updated successfully.");
@@ -50,6 +50,12 @@ public class Demo{
                         ownerDTOList.forEach(System.out::println);
                         break;
                     case 6:
+                        String petType=InputUtil.acceptPetTypeToOperate(scanner);
+                       ownerDTOList = ownerService.updatePetDetails(petType);
+                       System.out.println("There are " + ownerDTOList.size() + " owners.");
+                       ownerDTOList.forEach(System.out::println);
+                       break;
+                    case 7:
                         System.out.println("Thank you see u again");
                         System.exit(0);
                     default:
